@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-6">
+    <div *ngFor="let todo of todos" (click)="onSelect(todo)" [class.selected]="todo === selectedTodo">
+      <h5>{{todo.name}}</h5>
+      <div>id: {{todo.id}}</div>
+      <label>name:
+        <input [(ngModel)]="todo.name" placeholder="name"/>
+      </label>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <app-todo-detail [todo]="selectedTodo"></app-todo-detail>
+  </div>
+</div>
+
