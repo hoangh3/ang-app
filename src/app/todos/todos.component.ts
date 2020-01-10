@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo } from '../models/todo';
+import { TodoService } from '../service/todo.service';
 
 @Component({
   selector: 'app-todos',
@@ -7,18 +8,20 @@ import { Todo } from '../models/todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todos: Todo[] = [
-    { id: 1, name: 'study Angular' },
-    { id: 2, name: 'read novel Pham nhan tu tien chi tien gioi' },
-  ];
+  todos: Todo[];
   selectedTodo: Todo;
 
-  constructor() { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
+    this.getTodos();
   }
 
   onSelect(todo: Todo): void {
     this.selectedTodo = todo;
+  }
+
+  getTodos(): void {
+    this.todos = this.todoService.getTodos();
   }
 }
